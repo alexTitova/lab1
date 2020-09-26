@@ -11,13 +11,19 @@ namespace lab1.Classes
     {
         private char vertex;           // вершина
         private List<Path_unit> paths; // список путей из vertex
+        private static int count_of_paths;
 
 
-        public Node() { }
+        public Node() 
+        { 
+            count_of_paths = 0; 
+        }
+
         public Node(char vertex, List<Path_unit> paths)
         {
             this.vertex = vertex;
             this.paths = paths;
+            count_of_paths=paths.Count();
         }
 
         public char Vertex
@@ -28,13 +34,18 @@ namespace lab1.Classes
         public List<Path_unit> Paths
         {
             get { return this.paths; }
-            set { this.paths = value; }
+            set 
+            {
+                this.paths = value; 
+                count_of_paths = this.paths.Count(); 
+            }
         }
 
 
         public void Add_path(Path_unit unit)
         {
             this.paths.Add(unit);
+            count_of_paths++;
             this.paths.Sort();
         }
 
@@ -42,6 +53,7 @@ namespace lab1.Classes
         public void Remove_path(Path_unit unit)  // удоляет первое вхождение unit
         {
             this.paths.Remove(unit);
+            count_of_paths--;
         }
 
         public int Get_index_of(Path_unit unit) // возвращает индекс unit в листе, начиная с нулевого
@@ -59,7 +71,7 @@ namespace lab1.Classes
 
         public int Get_count_of_paths() // возвращает кол-во путей из вершины
         {
-            return this.paths.Count();
+            return count_of_paths;
         }
 
     }

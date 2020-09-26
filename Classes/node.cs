@@ -57,6 +57,11 @@ namespace lab1.Classes
             return (this.vertex, this.paths[index]);
         }
 
+        public int Get_count_of_paths() // возвращает кол-во путей из вершины
+        {
+            return this.paths.Count();
+        }
+
     }
 }
 

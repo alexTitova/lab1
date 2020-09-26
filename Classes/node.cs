@@ -47,10 +47,7 @@ namespace lab1.Classes
 
 
 
-        public int CompareTo(Node obj) // для сортировки узлов
-        {
-            return this.vertex.CompareTo(obj.vertex);
-        }
+
     }
 }
-}
+

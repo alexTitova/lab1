@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace lab1.Classes
 {
-    class Path_unit : IComparable<Path_unit> //  это единица списка пути
+    class Path_unit //  это единица списка пути
     {
         private char destination; // ключ
     private int weight;
@@ -90,12 +90,6 @@ namespace lab1.Classes
         else
             return false;
     }
-
-    public int CompareTo(Path_unit obj) // реализация для интерфейса IComparable<> для Sort
-    {
-        return this.destination.CompareTo(obj.destination);
-    }
-
 }
 
 

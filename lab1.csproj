@@ -46,6 +46,7 @@
     <Compile Include="Classes\graph.cs" />
     <Compile Include="Classes\node.cs" />
     <Compile Include="Classes\path_unit.cs" />
+    <Compile Include="parts\path_comparer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

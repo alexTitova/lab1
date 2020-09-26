@@ -1,4 +1,5 @@
-﻿using System;
+﻿using lab1.parts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,15 +39,23 @@ namespace lab1.Classes
         }
 
 
-        /* public (char, Path_unit) Get_path()  // возвращает пару( вершину, единицу пути) по 
-         {
-             int index = this.paths.BinarySearch()
+        public void Remove_path(Path_unit unit)  // удоляет первое вхождение unit
+        {
+            this.paths.Remove(unit);
+        }
 
-             return (this.vertex, unit);
-         }*/
+        public int Get_index_of(Path_unit unit) // возвращает индекс unit в листе, начиная с нулевого
+        {
+            return this.paths.BinarySearch(unit, new Path_comparer());
+        }
 
+        public (char, Path_unit) Get_path(char destination) // возвращает пару (вершина, единица пути) то есть путь от вершины до нужной верщины
+        {
+            Path_unit unit = new Path_unit(destination, 0);
+            int index = this.paths.BinarySearch(unit);
 
-
+            return (this.vertex, this.paths[index]);
+        }
 
     }
 }

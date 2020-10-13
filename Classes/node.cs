@@ -61,12 +61,14 @@ namespace lab1.Classes
             return this.paths.BinarySearch(unit, new Path_comparer());
         }
 
-        public (char, Path_unit) Get_path(char destination) // возвращает пару (вершина, единица пути) то есть путь от вершины до нужной верщины
+        public  Path_unit Get_Path_unit(char destination) // возвращает удиницу путиа пути) то есть путь от вершины до нужной верщины
         {
             Path_unit unit = new Path_unit(destination, 0);
             int index = this.paths.BinarySearch(unit);
-
-            return (this.vertex, this.paths[index]);
+            if (index >= 0)
+                return this.paths[index];
+            else
+                return null;
         }
 
         public int Get_count_of_paths() // возвращает кол-во путей из вершины

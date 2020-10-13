@@ -1,4 +1,5 @@
-﻿using System;
+﻿using lab1.parts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -43,7 +44,7 @@ namespace lab1.Classes
         public void Add(Node unit)
         {
             data.Add(unit);
-            data.Sort(0);
+            data.Sort();
             count_of_vertex++;
         }
 
@@ -54,6 +55,41 @@ namespace lab1.Classes
             data.Add(unit);
             data.Sort();
             count_of_vertex++;
+        }
+
+        //        public void Add_path((char, char) elem_path, int weight)
+
+        public int Get_index_of(char vertex)
+        {
+            Node elem = new Node(vertex, new List<Path_unit>());
+            return this.data.BinarySearch(elem, new Node_comparer());
+        }
+
+        public Node Get_Node_for_vertex(char vertex)
+        {
+            int index = this.Get_index_of(vertex);
+
+            if (index>=0)
+                return this.data[this.Get_index_of(vertex)];
+            else
+             return null;
+        }
+
+        public (bool, int, bool) Get_weight_of_path((char,char) path) // возвращает кортеж (есть путь или нет, вес пути, пройден путь или нет)
+        {
+            Node elem = this.Get_Node_for_vertex(path.Item1);
+
+            if (elem != null)
+            {
+                Path_unit unit = elem.Get_Path_unit(path.Item2);
+
+                if (unit != null)
+                    return (true, unit.Weight, unit.Flag);
+                else
+                    return (false, 0, false);
+            }
+            else
+                return(false, 0, false);
         }
 
 

@@ -12,25 +12,36 @@ namespace lab1
     {
         static void Main(string[] args)
         {
-            Path_unit aa = new Path_unit('a', 3);
-            Path_unit cc = new Path_unit('c', 3);
-            Path_unit dd = new Path_unit('d', 3);
-            Path_unit bb = new Path_unit('b', 3);
+            List<Path_unit> paths1 = new List<Path_unit>() { new Path_unit('b', 7), new Path_unit('d', 1), new Path_unit('e', 3) };
+            Node a1 = new Node('a', paths1);
 
-            List<Path_unit> arr = new List<Path_unit>();
-            arr.Add(bb);
-            arr.Add(aa);
-            arr.Add(dd);
-            arr.Add(cc);
+            List<Path_unit> paths2 = new List<Path_unit>() { new Path_unit('c', 2) };
+            Node b1 = new Node('b', paths2);
 
-            arr.Sort(new Path_comparer());
+            List<Path_unit> paths3 = new List<Path_unit>() { new Path_unit('a', 20), new Path_unit('d', 1) };
+            Node c1 = new Node('c', paths3);
 
-            foreach (Path_unit path in arr)
-                Console.WriteLine(path.Destination);
+            List<Path_unit> paths4 = new List<Path_unit>() { new Path_unit('c', 1), new Path_unit('e', 10) };
+            Node d1 = new Node('d', paths4);
 
-            Path_unit unit = new Path_unit('c', 0);
-            int index = arr.BinarySearch(unit, new Path_comparer());
-            Console.WriteLine(index);
+            List<Path_unit> paths5 = new List<Path_unit>() { new Path_unit('a', 3) };
+            Node e1 = new Node('e', paths5);
+
+            Node h1 = new Node('h');
+
+            Graph graph = new Graph();
+            graph.Add(d1);
+            graph.Add(a1);
+            graph.Add(e1);
+            graph.Add(b1);
+            graph.Add(c1);
+            graph.Add(h1);
+
+            Node x = graph.Get_Node_for_vertex('c');
+
+            (bool, int, bool) pp = graph.Get_weight_of_path(('c', 'a'));
+
+            Console.WriteLine("ok");
 
             Console.ReadKey();
         }

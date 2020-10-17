@@ -92,7 +92,18 @@ namespace lab1.Classes
                 return(false, 0, false);
         }
 
+        public List<char> Get_list_of_vertex()
+        {
+            List <char> result= new List<char>();
+            foreach (Node unit in this.data)
+            {
+                result.Add(unit.Vertex);
+            }
 
+            result.Sort();
+       
+            return result;
+        }
 
 
 

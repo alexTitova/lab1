@@ -13,6 +13,7 @@ namespace lab1.Classes
         private List<Path_unit> paths; // список путей из vertex
         private static int count_of_paths;
 
+        public Node() { }
 
         public Node(char vertex) 
         {

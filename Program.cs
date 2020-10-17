@@ -1,5 +1,6 @@
 ﻿using lab1.Classes;
 using lab1.parts;
+//using lab1.Tasks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,9 +42,18 @@ namespace lab1
 
             (bool, int, bool) pp = graph.Get_weight_of_path(('c', 'a'));
 
+            List<char> vertexes = graph.Get_list_of_vertex();
+
+            foreach(char a in vertexes)
+            {
+                Console.WriteLine(a);
+            }
+
             Console.WriteLine("ok");
 
+           
             Console.ReadKey();
         }
-    }
+
+   }
 }

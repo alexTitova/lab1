@@ -39,9 +39,10 @@ namespace lab1.Classes
             set { flag = value; }
         }
 
+
+
+
+
+
     }
-
 }
-
-
-

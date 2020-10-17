@@ -14,8 +14,10 @@ namespace lab1.Classes
         private static int count_of_paths;
 
 
-        public Node() 
-        { 
+        public Node(char vertex) 
+        {
+            this.vertex = vertex;
+            this.paths= new List<Path_unit>();
             count_of_paths = 0; 
         }
 
@@ -46,7 +48,7 @@ namespace lab1.Classes
         {
             this.paths.Add(unit);
             count_of_paths++;
-            this.paths.Sort();
+            this.paths.Sort(new Path_comparer());
         }
 
 
@@ -64,7 +66,7 @@ namespace lab1.Classes
         public  Path_unit Get_Path_unit(char destination) // возвращает удиницу путиа пути) то есть путь от вершины до нужной верщины
         {
             Path_unit unit = new Path_unit(destination, 0);
-            int index = this.paths.BinarySearch(unit);
+            int index = this.paths.BinarySearch(unit, new Path_comparer());
             if (index >= 0)
                 return this.paths[index];
             else

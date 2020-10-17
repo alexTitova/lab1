@@ -15,6 +15,7 @@ namespace lab1.Classes
 
         public Graph() 
         {
+            this.data = new List<Node>();
             count_of_vertex = 0;
         }
 
@@ -44,7 +45,7 @@ namespace lab1.Classes
         public void Add(Node unit)
         {
             data.Add(unit);
-            data.Sort();
+            data.Sort(new Node_comparer());
             count_of_vertex++;
         }
 
@@ -53,11 +54,10 @@ namespace lab1.Classes
             List<Path_unit> paths = new List<Path_unit>();
             Node unit = new Node(vertex, paths);
             data.Add(unit);
-            data.Sort();
+            data.Sort(new Node_comparer());
             count_of_vertex++;
         }
 
-        //        public void Add_path((char, char) elem_path, int weight)
 
         public int Get_index_of(char vertex)
         {

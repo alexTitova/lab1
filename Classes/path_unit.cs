@@ -39,58 +39,6 @@ namespace lab1.Classes
             set { flag = value; }
         }
 
-
-
-
-        // Переопределение операторов сравнения
-        public static bool operator ==(Path_unit a1, Path_unit a2)
-        {
-            if (a1.destination == a2.destination)
-                return true;
-            else
-                return false;
-        }
-
-        public static bool operator !=(Path_unit a1, Path_unit a2)
-        {
-            if (a1.destination != a2.destination)
-                return true;
-            else
-                return false;
-        }
-
-        public static bool operator <(Path_unit a1, Path_unit a2)
-        {
-            if (a1.destination < a2.destination)
-                return true;
-            else
-                return false;
-        }
-
-        public static bool operator >(Path_unit a1, Path_unit a2)
-        {
-            if (a1.destination != a2.destination)
-                return true;
-            else
-                return false;
-        }
-
-        public static bool operator <=(Path_unit a1, Path_unit a2)
-        {
-            if (a1.destination <= a2.destination)
-                return true;
-            else
-                return false;
-        }
-
-        public static bool operator >=(Path_unit a1, Path_unit a2)
-        {
-            if (a1.destination >= a2.destination)
-                return true;
-            else
-                return false;
-        }
-
     }
 
 }

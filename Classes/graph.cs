@@ -1,6 +1,7 @@
 ﻿using lab1.parts;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,7 +50,7 @@ namespace lab1.Classes
             count_of_vertex++;
         }
 
-        public void Add_vertex (char vertex) // добавляем вершину без связей 
+        public void Add_vertex (int vertex) // добавляем вершину без связей 
         {
             List<Path_unit> paths = new List<Path_unit>();
             Node unit = new Node(vertex, paths);
@@ -59,13 +60,13 @@ namespace lab1.Classes
         }
 
 
-        public int Get_index_of(char vertex)
+        public int Get_index_of(int vertex)
         {
             Node elem = new Node(vertex, new List<Path_unit>());
             return this.data.BinarySearch(elem, new Node_comparer());
         }
 
-        public Node Get_Node_for_vertex(char vertex)
+        public Node Get_Node_for_vertex(int vertex)
         {
             int index = this.Get_index_of(vertex);
 
@@ -75,7 +76,7 @@ namespace lab1.Classes
              return null;
         }
 
-        public (bool, int, bool) Get_weight_of_path((char,char) path) // возвращает кортеж (есть путь или нет, вес пути, пройден путь или нет)
+        public (bool, int, bool) Get_weight_of_path((int,int) path) // возвращает кортеж (есть путь или нет, вес пути, пройден путь или нет)
         {
             Node elem = this.Get_Node_for_vertex(path.Item1);
 
@@ -92,19 +93,23 @@ namespace lab1.Classes
                 return(false, 0, false);
         }
 
-        public List<char> Get_list_of_vertex()
+        public int[] Get_array_of_vertex()
         {
-            List <char> result= new List<char>();
+            int[] result = new int[count_of_vertex];
+            int i = 0;
+
             foreach (Node unit in this.data)
             {
-                result.Add(unit.Vertex);
+                if (i < count_of_vertex)
+                    result[i] = unit.Vertex;
+                else
+                    throw new IndexOutOfRangeException();
+
+                i++;
             }
 
-            result.Sort();
-       
             return result;
         }
-
 
 
     }

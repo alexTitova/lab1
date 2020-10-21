@@ -76,7 +76,9 @@ namespace lab1.Classes
              return null;
         }
 
-        public (bool, int, bool) Get_weight_of_path((int,int) path) // возвращает кортеж (есть путь или нет, вес пути, пройден путь или нет)
+
+        // возвращает кортеж (есть путь или нет, вес пути, пройден путь или нет)
+        public (bool, int, bool) Get_weight_of_path((int,int) path) 
         {
             Node elem = this.Get_Node_for_vertex(path.Item1);
 
@@ -93,6 +95,8 @@ namespace lab1.Classes
                 return(false, -1, false);
         }
 
+
+        // возвращает массив вершин графа
         public int[] Get_array_of_vertex()
         {
             int[] result = new int[count_of_vertex];
@@ -112,7 +116,8 @@ namespace lab1.Classes
         }
 
 
-        private void set_ifEqual(int[,] arr, int i, int j, int value) // проверка на равенство путей ab и ba 
+        // проверка на равенство путей ab и ba 
+        private void set_ifEqual(int[,] arr, int i, int j, int value) 
         {
             if (arr[j, i] != -1 && arr[j, i] != 0) // если пути существуют и заполнены
             {
@@ -130,6 +135,7 @@ namespace lab1.Classes
         }
 
 
+        // создание матрицы смежности на основе графа
         public int[,] Get_matrix_adjacency()
         {
             int[] array_of_vertex = this.Get_array_of_vertex();

@@ -23,10 +23,10 @@ namespace lab1
             List<Path_unit> paths3 = new List<Path_unit>() { new Path_unit(101, 20), new Path_unit(104, 1) };
             Node c1 = new Node(103, paths3);
 
-            List<Path_unit> paths4 = new List<Path_unit>() { new Path_unit(103, 1), new Path_unit(105, 10) };
+            List<Path_unit> paths4 = new List<Path_unit>() { new Path_unit(102,5), new Path_unit(103, 1), new Path_unit(105, 10) };
             Node d1 = new Node(104, paths4);
 
-            List<Path_unit> paths5 = new List<Path_unit>() { new Path_unit(101, 3) };
+            List<Path_unit> paths5 = new List<Path_unit>() { new Path_unit(101, 3), new Path_unit(103,1) };
             Node e1 = new Node(105, paths5);
 
             Node h1 = new Node(106);
@@ -52,15 +52,7 @@ namespace lab1
             */
             int[,] result = graph.Get_matrix_adjacency();
 
-            for (int i=0;i<vertexes.Length;i++)
-            {
-                for (int j=0;j<vertexes.Length;j++)
-                {
-                    Console.Write(result[i, j] + ' ');
-                }
-                Console.WriteLine();
-                Console.WriteLine("______________________");
-            }
+            int[,] path_tab = Path_table.path_matrix(graph);
             Console.WriteLine("ok");
 
 

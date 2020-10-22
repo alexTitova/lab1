@@ -1,6 +1,7 @@
 ﻿using lab1.parts;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,7 +50,7 @@ namespace lab1.Classes
             count_of_vertex++;
         }
 
-        public void Add_vertex (char vertex) // добавляем вершину без связей 
+        public void Add_vertex (int vertex) // добавляем вершину без связей 
         {
             List<Path_unit> paths = new List<Path_unit>();
             Node unit = new Node(vertex, paths);
@@ -59,13 +60,13 @@ namespace lab1.Classes
         }
 
 
-        public int Get_index_of(char vertex)
+        public int Get_index_of(int vertex)
         {
             Node elem = new Node(vertex, new List<Path_unit>());
             return this.data.BinarySearch(elem, new Node_comparer());
         }
 
-        public Node Get_Node_for_vertex(char vertex)
+        public Node Get_Node_for_vertex(int vertex)
         {
             int index = this.Get_index_of(vertex);
 
@@ -75,7 +76,9 @@ namespace lab1.Classes
              return null;
         }
 
-        public (bool, int, bool) Get_weight_of_path((char,char) path) // возвращает кортеж (есть путь или нет, вес пути, пройден путь или нет)
+
+        // возвращает кортеж (есть путь или нет, вес пути, пройден путь или нет)
+        public (bool, int) Get_weight_of_path((int,int) path) 
         {
             Node elem = this.Get_Node_for_vertex(path.Item1);
 
@@ -84,17 +87,81 @@ namespace lab1.Classes
                 Path_unit unit = elem.Get_Path_unit(path.Item2);
 
                 if (unit != null)
-                    return (true, unit.Weight, unit.Flag);
+                    return (true, unit.Weight);
                 else
-                    return (false, 0, false);
+                    return (false, -1);
             }
             else
-                return(false, 0, false);
+                return(false, -1);
         }
 
 
+        // возвращает массив вершин графа
+        public int[] Get_array_of_vertex()
+        {
+            int[] result = new int[count_of_vertex];
+            int i = 0;
+
+            foreach (Node unit in this.data)
+            {
+                if (i < count_of_vertex)
+                    result[i] = unit.Vertex;
+                else
+                    throw new IndexOutOfRangeException();
+
+                i++;
+            }
+
+            return result;
+        }
 
 
+        // проверка на равенство путей ab и ba 
+        private void set_ifEqual(int[,] arr, int i, int j, int value) 
+        {
+            if (arr[j, i] != -1 && arr[j, i] != 0) // если пути существуют и заполнены
+            {
+                if (value != arr[j, i])  // но их веса не равны, то исключение
+                    throw new ExceptionOfNotEqualPaths("Error! paths" + i + '-' + j + "!=" + j + '-' + i);
+                else
+                    arr[i, j] = value; // если равны то заполняем 
+            }
+            else
+            {
+                if (arr[j,i] == -1 || arr[j, i] == 0 ) // если симметричный не существует или он путь пустой, то заполняем текущий
+                    arr[i, j] = value;
+            }
+
+        }
+
+
+        // создание матрицы смежности на основе графа
+        public int[,] Get_matrix_adjacency()
+        {
+            int[] array_of_vertex = this.Get_array_of_vertex();
+            int[,] result = new int[array_of_vertex.Length, array_of_vertex.Length];
+            (bool, int) path_intedificator = (false, 0);
+
+            for (int i = 0; i < array_of_vertex.Length; i++)
+            {
+                for (int j = 0; j < array_of_vertex.Length; j++)
+                {
+                    if (i != j)
+                    {
+                        path_intedificator = this.Get_weight_of_path((array_of_vertex[i], array_of_vertex[j]));
+
+                        if (!path_intedificator.Item1)
+                            result[i, j] = -1;
+                        else
+                            set_ifEqual(result, i, j, path_intedificator.Item2); // проверка симметрричных путей
+                    }
+                    else
+                        result[i, i] = -1; // пути из А в А не существует
+                }
+            }
+
+            return result;
+        }
 
     }
 }

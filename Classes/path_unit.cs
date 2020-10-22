@@ -8,22 +8,20 @@ namespace lab1.Classes
 {
     class Path_unit //  это единица списка пути
     {
-        private char destination; // ключ
+        private int destination; // ключ
         private int weight;
-        private bool flag; // пройдена ли данная вершина или нет
-
+  
 
         public Path_unit() { }
 
-        public Path_unit(char vertex, int weight_of_path)
+        public Path_unit(int vertex, int weight_of_path)
         {
             destination = vertex;
             weight = weight_of_path;
-            flag = false;
         }
 
 
-        public char Destination
+        public int Destination
         {
             get { return destination; }
             set { destination = value; }
@@ -33,16 +31,6 @@ namespace lab1.Classes
             get { return weight; }
             set { weight = value; }
         }
-        public bool Flag
-        {
-            get { return flag; }
-            set { flag = value; }
-        }
-
-
-
-
-
 
     }
 }

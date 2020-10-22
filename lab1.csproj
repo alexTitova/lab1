@@ -46,13 +46,16 @@
     <Compile Include="Classes\graph.cs" />
     <Compile Include="Classes\node.cs" />
     <Compile Include="Classes\path_unit.cs" />
+    <Compile Include="parts\my_exceptions.cs" />
     <Compile Include="parts\node_comparer.cs" />
     <Compile Include="parts\path_comparer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tasks\path_table.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

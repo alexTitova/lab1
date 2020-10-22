@@ -13,7 +13,7 @@ namespace lab1
 
     class Path_table
     {
-        private static List<(int,int,int)> func_see(int line, int column, int[,] matrix)
+        private static List<(int,int,int)> Func_see(int line, int column, int[,] matrix)
         {
             List<(int, int, int)> result = new List<(int, int, int)>();
 
@@ -28,7 +28,7 @@ namespace lab1
 
 
 
-        private static int[,] rewrite_path_tab(int line, int[,] rewrite_tab, List<(int,int,int)> vals)
+        private static int[,] Rewrite_path_tab(int line, int[,] rewrite_tab, List<(int,int,int)> vals)
         {
             foreach ((int,int,int) unit in vals)
             {
@@ -46,7 +46,7 @@ namespace lab1
 
 
         // приводит таблицу расстояний приводит к стандартному виду если нет пути то ставит 0
-        private static void normalization_path_tab(int[,] path_tab) 
+        private static void Normalization_path_tab(int[,] path_tab) 
         {
             for(int i=0;i<path_tab.GetLength(0);i++)
             {
@@ -59,7 +59,7 @@ namespace lab1
         }
 
 
-        public static int[,] path_matrix(Graph graph)
+        public static int[,] Path_matrix(Graph graph)
         {
             int n = graph.Get_count_of_vertex();
             List<(int, int,int)> values = new List<(int, int,int)>();
@@ -71,25 +71,27 @@ namespace lab1
             {
                 mat_avg = path_tab;
 
+                // здесь будет делиться на два потока
                 for (int i=0;i<n; i++)
                 {
                     for(int j=0;j<n;j++)
                     {
                         if(mat_avg[i,j]!=-1 && i!=j)
-                            values = func_see(i, j, mat_avg); // смотрит есть ли в j-ой строке что изменить
+                            values = Func_see(i, j, mat_avg); // смотрит есть ли в j-ой строке что изменить
 
                         if (values != null)
                         {
-                            path_tab = rewrite_path_tab(i, mat_avg, values);
+                            path_tab = Rewrite_path_tab(i, mat_avg, values); 
                             values = null;
                         }
                     }
                 }
 
+                // сделать объединение потоков 
                 flag = path_tab.Equals(mat_avg); // есть ли изменения в прпомежуточной матрицы и финальной
             }
 
-            normalization_path_tab(path_tab);
+            Normalization_path_tab(path_tab);
 
             return path_tab;
         }

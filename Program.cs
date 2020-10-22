@@ -52,7 +52,7 @@ namespace lab1
             */
             int[,] result = graph.Get_matrix_adjacency();
 
-            int[,] path_tab = Path_table.path_matrix(graph);
+            int[,] path_tab = Path_table.Path_matrix(graph);
             Console.WriteLine("ok");
 
 

@@ -10,8 +10,7 @@ namespace lab1.Classes
     {
         private int destination; // ключ
         private int weight;
-        private bool flag; // пройдена ли данная вершина или нет
-
+  
 
         public Path_unit() { }
 
@@ -19,7 +18,6 @@ namespace lab1.Classes
         {
             destination = vertex;
             weight = weight_of_path;
-            flag = false;
         }
 
 
@@ -32,11 +30,6 @@ namespace lab1.Classes
         {
             get { return weight; }
             set { weight = value; }
-        }
-        public bool Flag
-        {
-            get { return flag; }
-            set { flag = value; }
         }
 
     }

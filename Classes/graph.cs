@@ -78,7 +78,7 @@ namespace lab1.Classes
 
 
         // возвращает кортеж (есть путь или нет, вес пути, пройден путь или нет)
-        public (bool, int, bool) Get_weight_of_path((int,int) path) 
+        public (bool, int) Get_weight_of_path((int,int) path) 
         {
             Node elem = this.Get_Node_for_vertex(path.Item1);
 
@@ -87,12 +87,12 @@ namespace lab1.Classes
                 Path_unit unit = elem.Get_Path_unit(path.Item2);
 
                 if (unit != null)
-                    return (true, unit.Weight, unit.Flag);
+                    return (true, unit.Weight);
                 else
-                    return (false, -1, false);
+                    return (false, -1);
             }
             else
-                return(false, -1, false);
+                return(false, -1);
         }
 
 
@@ -140,7 +140,7 @@ namespace lab1.Classes
         {
             int[] array_of_vertex = this.Get_array_of_vertex();
             int[,] result = new int[array_of_vertex.Length, array_of_vertex.Length];
-            (bool, int, bool) path_intedificator = (false, 0, false);
+            (bool, int) path_intedificator = (false, 0);
 
             for (int i = 0; i < array_of_vertex.Length; i++)
             {
